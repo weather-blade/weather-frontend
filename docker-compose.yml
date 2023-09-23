@@ -1,0 +1,12 @@
+services:
+  dev-server:
+    build: .
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      NODE_ENV: dev
+    ports:
+      - 8000:8000
+    tty: true # to enable colored output
+    command: pnpm run dev

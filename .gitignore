@@ -1,0 +1,6 @@
+node_modules
+todo.txt
+dist
+build
+dev-dist
+/.svelte-kit
