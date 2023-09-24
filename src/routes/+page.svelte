@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { ReadingsAPI } from '$api/api';
+	import ChartTempHum from '$lib/chart/ChartTempHum.svelte';
 
 	let readings: IReading[] = [];
 
@@ -14,8 +15,6 @@
 	<title>Dashboard</title>
 </svelte:head>
 
-<section class="flex flex-col gap-6">dashboard text xd</section>
-
-<div>
-	{JSON.stringify(readings)}
-</div>
+<section class="flex flex-col gap-6">
+	<ChartTempHum {readings} />
+</section>
