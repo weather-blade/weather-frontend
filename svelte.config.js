@@ -15,6 +15,7 @@ const config = {
 		},
 
 		alias: {
+			$api: 'src/api',
 			$assets: 'src/assets',
 			$styles: 'src/styles',
 			$types: 'src/types',
