@@ -234,6 +234,6 @@
 	});
 </script>
 
-<div class="rounded border border-zinc-700 bg-zinc-800">
+<div class="rounded border border-zinc-700 bg-zinc-800 p-1">
 	<canvas height="600" bind:this={ctx} />
 </div>
