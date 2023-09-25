@@ -22,30 +22,10 @@
 
 	export let readings: IReading[];
 
-	$: readings_temperature_avg = readings.map((reading) => {
+	$: readings_pressure_BMP = readings.map((reading) => {
 		return {
 			x: reading.createdAt.getTime(),
-			// average value of the 2 sensors
-			y: (reading.temperature_BMP + reading.temperature_DHT) / 2,
-		};
-	});
-
-	$: readings_temperature_BMP = readings.map((reading) => {
-		return {
-			x: reading.createdAt.getTime(),
-			y: reading.temperature_BMP,
-		};
-	});
-	$: readings_temperature_DHT = readings.map((reading) => {
-		return {
-			x: reading.createdAt.getTime(),
-			y: reading.temperature_DHT,
-		};
-	});
-	$: readings_humidity_DHT = readings.map((reading) => {
-		return {
-			x: reading.createdAt.getTime(),
-			y: reading.humidity_DHT,
+			y: reading.pressure_BMP / 100, // unit conversion from Pa to hPa
 		};
 	});
 
@@ -84,23 +64,7 @@
 				position: 'left',
 				title: {
 					display: true,
-					text: 'Teplota [˚C]',
-					color: chartColors.fontColor,
-				},
-
-				ticks: {
-					color: chartColors.fontColor,
-				},
-			},
-			y2: {
-				display: 'auto',
-				grid: {
-					drawOnChartArea: false,
-				},
-				position: 'right',
-				title: {
-					display: true,
-					text: 'Relativní vlhkost [%]',
+					text: 'Tlak [hPa]',
 					color: chartColors.fontColor,
 				},
 
@@ -142,58 +106,17 @@
 	const data = {
 		datasets: [
 			{
-				label: 'Teplota',
-				data: readings_temperature_avg,
+				label: 'Tlak',
+				data: readings_pressure_BMP,
 				yAxisID: 'y1',
 
-				backgroundColor: chartColors.lineRed,
-				borderColor: chartColors.lineRed,
+				backgroundColor: chartColors.linePurple,
+				borderColor: chartColors.linePurple,
 
 				pointRadius: 2,
 				pointHoverRadius: 5,
-				pointHoverBackgroundColor: chartColors.lineRed,
-				pointHoverBorderColor: chartColors.lineRed,
-			},
-			{
-				label: 'Teplota BMP',
-				data: readings_temperature_BMP,
-				yAxisID: 'y1',
-				hidden: true,
-
-				backgroundColor: chartColors.lineYellow,
-				borderColor: chartColors.lineYellow,
-
-				pointRadius: 2,
-				pointHoverRadius: 5,
-				pointHoverBackgroundColor: chartColors.lineYellow,
-				pointHoverBorderColor: chartColors.lineYellow,
-			},
-			{
-				label: 'Teplota DHT',
-				data: readings_temperature_DHT,
-				yAxisID: 'y1',
-				hidden: true,
-
-				backgroundColor: chartColors.lineOrange,
-				borderColor: chartColors.lineOrange,
-
-				pointRadius: 2,
-				pointHoverRadius: 5,
-				pointHoverBackgroundColor: chartColors.lineOrange,
-				pointHoverBorderColor: chartColors.lineOrange,
-			},
-			{
-				label: 'Vlhkost',
-				data: readings_humidity_DHT,
-				yAxisID: 'y2',
-
-				backgroundColor: chartColors.lineBlue,
-				borderColor: chartColors.lineBlue,
-
-				pointRadius: 2,
-				pointHoverRadius: 5,
-				pointHoverBackgroundColor: chartColors.lineBlue,
-				pointHoverBorderColor: chartColors.lineBlue,
+				pointHoverBackgroundColor: chartColors.linePurple,
+				pointHoverBorderColor: chartColors.linePurple,
 			},
 		],
 	};
@@ -202,10 +125,7 @@
 	let chartInstance: Chart<'line'>;
 
 	$: if (chartInstance) {
-		chartInstance.data.datasets[0].data = readings_temperature_avg;
-		chartInstance.data.datasets[1].data = readings_temperature_BMP;
-		chartInstance.data.datasets[2].data = readings_temperature_DHT;
-		chartInstance.data.datasets[3].data = readings_humidity_DHT;
+		chartInstance.data.datasets[0].data = readings_pressure_BMP;
 		chartInstance.update();
 	}
 
@@ -234,6 +154,6 @@
 	});
 </script>
 
-<div class="h-3/5 rounded border border-zinc-700 bg-zinc-800 p-1 md:h-full md:w-3/5">
+<div class="h-2/5 rounded border border-zinc-700 bg-zinc-800 p-1 md:h-full md:w-2/5">
 	<canvas bind:this={ctx} />
 </div>
