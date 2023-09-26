@@ -1,9 +1,24 @@
 export class Utils {
-	public static padWithZeroes(originalNumber: number) {
-		return String(originalNumber).padStart(2, '0');
+	/**
+	 * @param arr array of numbers
+	 * @returns average value of that array
+	 */
+	public static getAvg(arr: number[]) {
+		return arr.reduce((acc, curr) => acc + curr) / arr.length;
 	}
 
-	// return padded date in format: hh:mm:ss dd.mm.yyyy
+	/**
+	 * @param originalNumber
+	 * @param width how wide should the number be
+	 * @returns the original number padded with zeroes
+	 */
+	public static padWithZeroes(originalNumber: number, width = 2) {
+		return String(originalNumber).padStart(width, '0');
+	}
+
+	/**
+	 * @returns padded date in format: hh:mm:ss dd.mm.yyyy
+	 */
 	public static padDate(date: Date) {
 		const hours = this.padWithZeroes(date.getHours());
 		const minutes = this.padWithZeroes(date.getMinutes());
