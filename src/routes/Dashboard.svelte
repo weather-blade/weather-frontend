@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Utils } from '$utils/functions';
+	import Countdown from './Countdown.svelte';
 
 	export let readings: IReading[];
 
@@ -43,7 +44,7 @@
 	}
 
 	/**
-	 * @returns average delay between all the readings
+	 * @returns average delay between all the readings in milliseconds
 	 */
 	function getAvgDelay(readings: IReading[]) {
 		const delays: number[] = [];
@@ -64,7 +65,7 @@
 	{lastDate.hours}:{lastDate.minutes} ({lastDate.dayOfMonth}.{lastDate.month}.{lastDate.year})
 
 	{nextReadingDate}
-	<!-- @TODO timer -->
+	<Countdown endDate={nextReadingDate} maxDuration={getAvgDelay(readings)} />
 
 	{minTemperature}
 	{maxTemperature}
