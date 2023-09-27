@@ -1,6 +1,6 @@
 FROM node:18.17.1-bullseye-slim as builder
 RUN apt-get update && apt-get upgrade -y
-RUN npm -g install pnpm
+RUN npm -g install pnpm@8.7.6
 
 WORKDIR /app
 
@@ -16,7 +16,7 @@ RUN pnpm run build
 
 FROM node:18.17.1-bullseye-slim as deployment
 RUN apt-get update && apt-get upgrade -y
-RUN npm -g install pnpm
+RUN npm -g install pnpm@8.7.6
 
 # keep only the needed files
 COPY --from=builder /app/build /app/build
