@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Utils } from '$utils/functions';
+	import ProgressBar from '$lib/ProgressBar.svelte';
 
 	// date, when the countdown will reach 0
 	export let endDate: Date;
@@ -22,9 +23,11 @@
 	});
 </script>
 
-<div>
-	<progress value={maxDuration / 1000 - timer} max={maxDuration / 1000} />
+<div class="h-1 w-36">
+	<ProgressBar value={maxDuration / 1000 - timer} max={maxDuration / 1000} />
+</div>
 
+<div>
 	{Utils.padWithZeroes(minutes)}:{Utils.padWithZeroes(seconds)}
 
 	{#if timer < 0}
