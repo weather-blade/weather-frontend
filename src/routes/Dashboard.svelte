@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Utils } from '$utils/functions';
+	import Widget from './Widget.svelte';
 	import Countdown from './Countdown.svelte';
 
 	export let readings: IReading[];
@@ -57,16 +58,25 @@
 	}
 </script>
 
-<section class="">
-	{(readings[0].temperature_DHT + readings[0].temperature_BMP) / 2}
+<section class="flex flex-wrap gap-2 whitespace-nowrap">
+	<Widget title="Aktuální teplota">
+		{Utils.round((readings[0].temperature_DHT + readings[0].temperature_BMP) / 2, 1)} ˚C
+	</Widget>
 
-	{readings[0].humidity_DHT}
+	<Widget title="Aktuální vlhkost">
+		{Math.round(readings[0].humidity_DHT)} %
+	</Widget>
 
-	{lastDate.hours}:{lastDate.minutes} ({lastDate.dayOfMonth}.{lastDate.month}.{lastDate.year})
+	<Widget title="Poslední aktualizace">
+		{lastDate.hours}:{lastDate.minutes} ({lastDate.dayOfMonth}.{lastDate.month}.{lastDate.year})
+	</Widget>
 
-	{nextReadingDate}
-	<Countdown endDate={nextReadingDate} maxDuration={getAvgDelay(readings)} />
+	<Widget title="Další aktualizace za">
+		<Countdown endDate={nextReadingDate} maxDuration={getAvgDelay(readings)} />
+	</Widget>
 
-	{minTemperature}
-	{maxTemperature}
+	<Widget title="Min / max teplota (24 h)">
+		{Utils.round(minTemperature, 1)} /
+		{Utils.round(maxTemperature, 1)} ˚C
+	</Widget>
 </section>

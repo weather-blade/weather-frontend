@@ -8,6 +8,14 @@ export class Utils {
 	}
 
 	/**
+	 * @returns original number rounded to certain number of decimal place
+	 */
+	public static round(originalNumber: number, decimalPlaces: number) {
+		const x = 10 ** decimalPlaces;
+		return Math.round(originalNumber * x) / x;
+	}
+
+	/**
 	 * @param originalNumber
 	 * @param width how wide should the number be
 	 * @returns the original number padded with zeroes
