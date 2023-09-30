@@ -7,10 +7,78 @@
 
 	let readings: IReading[] = [];
 
-	onMount(async () => {
+	let isOnline = navigator.onLine;
+	let listeningToSSE = false;
+	let eventSource: EventSource;
+
+	onMount(() => {
+		get24hReadings();
+
+		window.addEventListener('online', goOnline);
+		window.addEventListener('offline', goOffline);
+
+		return () => {
+			window.removeEventListener('online', goOnline);
+			window.removeEventListener('offline', goOffline);
+
+			if (eventSource !== undefined) {
+				eventSource.close();
+			}
+		};
+	});
+
+	// open new SSE connection if you are online and not listening yet
+	$: if (!listeningToSSE && isOnline) {
+		const SSE_URL = 'https://weather-station-backend.fly.dev/api/readings/events';
+		// const SSE_URL = 'http://localhost:8080/api/readings/events';
+
+		eventSource = new EventSource(SSE_URL);
+
+		// update current readings with newly received reading
+		eventSource.addEventListener('message', (event) => {
+			const newReading: IReading = JSON.parse(event.data);
+			newReading.createdAt = new Date(newReading.createdAt); // string to date object
+			console.log('New reading: ', newReading);
+
+			// remove last reading to only keep readings from last 24 hours
+			readings.pop();
+
+			readings.unshift(newReading);
+
+			readings = readings;
+		});
+
+		eventSource.addEventListener('error', (error) => {
+			eventSource.close(); // close the connection to prevent additional errors
+
+			console.warn('EventSource failed:', error);
+
+			setTimeout(() => {
+				// try to restart the connection after 10s
+				listeningToSSE = false;
+			}, 10000);
+		});
+
+		listeningToSSE = true;
+	}
+
+	async function goOnline() {
+		console.log('Going Online');
+		isOnline = navigator.onLine;
+
+		// Fetch latest readings after reconnecting to a network
+		await get24hReadings();
+	}
+
+	function goOffline() {
+		console.log('Going Offline');
+		isOnline = navigator.onLine;
+	}
+
+	async function get24hReadings() {
 		const res = await ReadingsAPI.fetchLast24h();
 		readings = res;
-	});
+	}
 </script>
 
 <svelte:head>
@@ -26,21 +94,6 @@
 			<Dashboard bind:readings />
 		</section>
 	{/if}
-
-	<button
-		on:click={() => {
-			readings.unshift({
-				id: 69,
-				createdAt: new Date(),
-				humidity_DHT: 69,
-				pressure_BMP: 69,
-				temperature_BMP: 69,
-				temperature_DHT: 69,
-			});
-
-			readings = readings;
-		}}>xd</button
-	>
 
 	<section class="flex flex-grow flex-col gap-2 md:flex-row">
 		<ChartTempHum {readings} />
