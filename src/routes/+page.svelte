@@ -87,8 +87,13 @@
 
 <section class="flex h-full flex-col gap-2">
 	{#if readings.length === 0}
-		<!-- @TODO -->
-		placeholder
+		<section class="flex flex-wrap gap-2">
+			{#each Array(5) as _}
+				<div class="flex-1 animate-pulse rounded bg-zinc-800">
+					<div class="h-16 w-36"></div>
+				</div>
+			{/each}
+		</section>
 	{:else}
 		<section>
 			<Dashboard bind:readings />
