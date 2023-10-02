@@ -26,7 +26,7 @@
 	$: days = splitByDays(forecast);
 </script>
 
-<section class="flex flex-col gap-2">
+<section class="grid gap-4">
 	{#each days as dayForecast, i}
 		{#if i === 0}
 			<!-- add sunrise time only to today's card -->
@@ -36,3 +36,9 @@
 		{/if}
 	{/each}
 </section>
+
+<style>
+	section {
+		grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+	}
+</style>
