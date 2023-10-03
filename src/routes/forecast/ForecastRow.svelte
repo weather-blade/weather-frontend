@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { Utils } from '$utils/functions';
 
 	export let timePoint: IForecast;
@@ -54,7 +55,7 @@
 	<td class="flex justify-center">
 		<img
 			class="h-8"
-			src={`/icons/weathericons/${getIconCode(timePoint)}.svg`}
+			src="{base}/icons/weathericons/{getIconCode(timePoint)}.svg"
 			alt={getIconCode(timePoint)}
 		/>
 	</td>

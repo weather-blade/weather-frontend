@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { Utils } from '$utils/functions';
 	import ForecastRow from './ForecastRow.svelte';
 
@@ -50,13 +51,13 @@
 			<div class="grid grid-cols-2 grid-rows-2">
 				<div class="col-span-2">Východ</div>
 
-				<img class="sunriseSunset h-8 fill-red-400" src="/icons/sunrise.svg" alt="sunrise" />
+				<img class="sunriseSunset h-8 fill-red-400" src="{base}/icons/sunrise.svg" alt="sunrise" />
 				<span>{sunrise}</span>
 			</div>
 			<div class="grid grid-cols-2 grid-rows-2">
 				<div class="col-span-2">Západ</div>
 
-				<img class="sunriseSunset h-8 fill-red-400" src="/icons/sunset.svg" alt="sunrise" />
+				<img class="sunriseSunset h-8 fill-red-400" src="{base}/icons/sunset.svg" alt="sunrise" />
 				<span>{sunset}</span>
 			</div>
 		</div>
