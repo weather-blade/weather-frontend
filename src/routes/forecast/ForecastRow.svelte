@@ -5,8 +5,23 @@
 	export let timePoint: IForecast;
 
 	function getHours(timePoint: IForecast) {
-		const hours = timePoint.time.getHours();
-		const hoursText = Utils.padWithZeroes(hours);
+		let hours = timePoint.time.getHours();
+		let hoursText = Utils.padWithZeroes(hours);
+
+		const precipitation1hr = timePoint.data?.next_1_hours?.details?.precipitation_amount;
+
+		// if the timepoint doesn't have data for the next hour, it applies to the next 6 hours
+		if (precipitation1hr === undefined) {
+			const hoursStart = Utils.padWithZeroes(hours);
+
+			// day has only 24 hours, so move the clock if it would overflow into the next day
+			if (hours + 6 > 23) {
+				hours = hours - 24;
+			}
+			const hoursEnd = Utils.padWithZeroes(hours + 6);
+
+			hoursText = `${hoursStart}—${hoursEnd}`;
+		}
 
 		return hoursText;
 	}
