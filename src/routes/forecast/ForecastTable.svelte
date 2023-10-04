@@ -26,7 +26,7 @@
 	$: days = splitByDays(forecast);
 </script>
 
-<section class="grid gap-4">
+<section class="grid gap-2">
 	{#each days as dayForecast, i}
 		{#if i === 0}
 			<!-- add sunrise time only to today's card -->

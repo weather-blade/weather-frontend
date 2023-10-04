@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { ForecastAPI } from '$api/api';
+	import ChartForecast from '$lib/chart/ChartForecast.svelte';
 	import ForecastTable from './ForecastTable.svelte';
 
 	let forecast: IForecast[] = [];
@@ -25,6 +26,7 @@
 		<!-- @TODO -->
 		placeholder
 	{:else}
+		<ChartForecast {forecast} />
 		<ForecastTable {forecast} {sunriseSunset} />
 	{/if}
 </section>

@@ -6,6 +6,8 @@ export const chartColors = {
 
 	// stone-400
 	fontColor: '#a8a29e',
+	// stone-500
+	fontColorDark: '#78716c',
 
 	// rose-500
 	lineRed: '#f43f5e',
