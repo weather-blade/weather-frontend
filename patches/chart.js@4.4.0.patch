@@ -1,0 +1,13 @@
+diff --git a/dist/chart.js b/dist/chart.js
+index 3a021319e291092dc5650321efe66ae9612210e9..45c3350074b7332da621a49bbfe823b2feb97591 100644
+--- a/dist/chart.js
++++ b/dist/chart.js
+@@ -3714,7 +3714,7 @@ function titleArgs(scale, offset, position, align) {
+             titleX = offsetFromEdge(scale, position, offset);
+         }
+         titleY = _alignStartEnd(align, bottom, top);
+-        rotation = position === 'left' ? -HALF_PI : HALF_PI;
++        rotation = position === 'left' ? -HALF_PI : -HALF_PI;
+     }
+     return {
+         titleX,

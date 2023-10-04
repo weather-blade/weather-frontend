@@ -46,5 +46,10 @@
 		"chartjs-plugin-zoom": "^2.0.1",
 		"date-fns": "^2.30.0",
 		"svelte-french-toast": "^1.2.0"
+	},
+	"pnpm": {
+		"patchedDependencies": {
+			"chart.js@4.4.0": "patches/chart.js@4.4.0.patch"
+		}
 	}
 }
