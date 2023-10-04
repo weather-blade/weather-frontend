@@ -73,6 +73,8 @@
 				},
 
 				ticks: {
+					maxRotation: 0,
+					autoSkipPadding: 20,
 					color: chartColors.fontColor,
 				},
 			},
