@@ -10,7 +10,7 @@
 		Legend,
 		Tooltip,
 	} from 'chart.js';
-	import type { ChartOptions } from 'chart.js';
+	import type { ChartOptions, ChartData } from 'chart.js';
 
 	import 'chartjs-adapter-date-fns';
 	import { cs } from 'date-fns/locale';
@@ -103,7 +103,7 @@
 		},
 	};
 
-	const data = {
+	const data: ChartData<'line', { x: number; y: number }[]> = {
 		datasets: [
 			{
 				label: 'Tlak',
