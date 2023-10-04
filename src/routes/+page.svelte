@@ -87,6 +87,7 @@
 
 <section class="flex h-full flex-col gap-2">
 	{#if readings.length === 0}
+		<!-- placeholder -->
 		<section class="flex flex-wrap gap-2">
 			{#each Array(5) as _}
 				<div class="flex-1 animate-pulse rounded bg-zinc-800">
