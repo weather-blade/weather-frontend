@@ -3,6 +3,7 @@
 	import { ForecastAPI } from '$api/api';
 	import ChartForecast from '$lib/chart/ChartForecast.svelte';
 	import ForecastTable from './ForecastTable.svelte';
+	import Footer from './Footer.svelte';
 
 	let forecast: IForecast[] = [];
 	let sunriseSunset: ISunrise | undefined;
@@ -30,3 +31,5 @@
 		<ForecastTable {forecast} {sunriseSunset} />
 	{/if}
 </section>
+
+<Footer />
