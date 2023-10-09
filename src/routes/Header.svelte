@@ -5,6 +5,7 @@
 <header>
 	<nav class="flex justify-center gap-4 text-lg text-stone-400">
 		<HeaderLink linkName="Dashboard" linkRoute="/" />
+		<HeaderLink linkName="Úplná data" linkRoute="/history" />
 		<HeaderLink linkName="Předpověď" linkRoute="/forecast" />
 		<HeaderLink linkName="O meteostanici" linkRoute="/about" />
 	</nav>

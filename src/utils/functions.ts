@@ -38,4 +38,13 @@ export class Utils {
 
 		return { hours, minutes, seconds, dayOfMonth, month, year };
 	}
+
+	/**
+	 * Returns how many months are there between 2 dates
+	 */
+	public static monthDiff(dateFrom: Date, dateTo: Date) {
+		return (
+			dateTo.getMonth() - dateFrom.getMonth() + 12 * (dateTo.getFullYear() - dateFrom.getFullYear())
+		);
+	}
 }
