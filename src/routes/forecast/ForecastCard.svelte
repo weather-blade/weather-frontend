@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { Utils } from '$utils/functions';
 	import ForecastRow from './ForecastRow.svelte';
+	import SvgIcon from '$lib/SvgIcon.svelte';
 
 	export let dayForecast: IForecast[];
 	export let sunriseSunset: ISunrise | undefined = undefined;
@@ -51,22 +51,15 @@
 			<div class="grid grid-cols-2 grid-rows-2">
 				<div class="col-span-2">Východ</div>
 
-				<img class="sunriseSunset h-8 fill-red-400" src="{base}/icons/sunrise.svg" alt="sunrise" />
+				<SvgIcon name="sunrise" class="h-8" />
 				<span>{sunrise}</span>
 			</div>
 			<div class="grid grid-cols-2 grid-rows-2">
 				<div class="col-span-2">Západ</div>
 
-				<img class="sunriseSunset h-8 fill-red-400" src="{base}/icons/sunset.svg" alt="sunrise" />
+				<SvgIcon name="sunset" class="h-8" />
 				<span>{sunset}</span>
 			</div>
 		</div>
 	{/if}
 </section>
-
-<style>
-	.sunriseSunset {
-		/* https://codepen.io/sosuke/pen/Pjoqqp */
-		filter: invert(99%) sepia(1%) saturate(2248%) hue-rotate(162deg) brightness(96%) contrast(80%);
-	}
-</style>
