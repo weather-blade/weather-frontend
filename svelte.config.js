@@ -22,6 +22,10 @@ const config = {
 			$types: 'src/types',
 			$utils: 'src/utils',
 		},
+
+		files: {
+			serviceWorker: 'src/workers/sw.ts',
+		},
 	},
 };
 

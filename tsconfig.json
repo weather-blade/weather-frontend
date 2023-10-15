@@ -2,10 +2,15 @@
 	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
 		"target": "ES2022",
-		"lib": ["ES2022", "DOM"],
+		"lib": ["ES2022", "DOM", "WebWorker"],
 		"module": "ES2022",
 		"moduleResolution": "node",
-		"types": ["vite/client"],
+		"types": [
+			"vite/client",
+			"vite-plugin-pwa/client",
+			"vite-plugin-pwa/info",
+			"vite-plugin-pwa/svelte"
+		],
 		"isolatedModules": true,
 		"noImplicitAny": true,
 
