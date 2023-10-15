@@ -26,7 +26,7 @@ export default defineConfig({
 			srcDir: 'src/workers',
 			filename: 'sw.ts',
 
-			mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+			mode: 'development',
 			devOptions: {
 				enabled: true,
 				type: 'module', // docs say this doesn't work in firefox even though it does
