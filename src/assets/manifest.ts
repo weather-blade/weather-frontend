@@ -31,7 +31,7 @@ export const manifest: Partial<ManifestOptions> = {
 	start_url: '/',
 	scope: '/',
 	display: 'standalone',
-	theme_color: 'rgb(17, 18, 23)',
-	background_color: 'rgb(17, 18, 23)',
+	theme_color: '#18181b',
+	background_color: '#18181b',
 	orientation: 'any',
 };
