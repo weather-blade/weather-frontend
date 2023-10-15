@@ -1,6 +1,9 @@
-/// <reference lib="WebWorker" />
+// https://github.com/microsoft/TypeScript/issues/14877
+// https://kit.svelte.dev/docs/service-workers#type-safety
 /// <reference types="vite/client" />
+/// <reference types="@sveltejs/kit" />
 /// <reference no-default-lib="true"/>
+/// <reference lib="WebWorker" />
 /// <reference lib="ES2022" />
 
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';

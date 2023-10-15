@@ -26,6 +26,14 @@ const config = {
 		files: {
 			serviceWorker: 'src/workers/sw.ts',
 		},
+		serviceWorker: {
+			// https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#generate-custom-service-worker
+			// https://kit.svelte.dev/docs/service-workers
+
+			// disable the sveltekit automatic registration,
+			// because we are doing the registration manually in +layout.svelte with vite-plugin-pwa
+			register: false,
+		},
 	},
 };
 

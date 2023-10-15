@@ -4,11 +4,11 @@
 	import { onMount } from 'svelte';
 	import { pwaInfo } from 'virtual:pwa-info';
 	import { Toaster } from 'svelte-french-toast';
-	import { registerSW } from 'virtual:pwa-register';
+	import { useRegisterSW } from 'virtual:pwa-register/svelte';
 
 	onMount(async () => {
 		if (pwaInfo) {
-			registerSW({
+			useRegisterSW({
 				immediate: true,
 
 				onRegisteredSW(r) {

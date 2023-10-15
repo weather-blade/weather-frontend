@@ -9,6 +9,12 @@ export default defineConfig({
 		sourcemap: true,
 	},
 
+	define: {
+		// https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#generate-custom-service-worker
+		'process.env.NODE_ENV':
+			process.env.NODE_ENV === 'production' ? '"production"' : '"development"',
+	},
+
 	plugins: [
 		sveltekit(),
 		SvelteKitPWA({
@@ -20,7 +26,7 @@ export default defineConfig({
 			srcDir: 'src/workers',
 			filename: 'sw.ts',
 
-			mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
+			mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
 			devOptions: {
 				enabled: true,
 				type: 'module', // docs say this doesn't work in firefox even though it does
@@ -30,6 +36,7 @@ export default defineConfig({
 			includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
 
 			workbox: {
+				// doesn't work with SvelteKitPWA plugin. Works with VitePWA plugin though
 				sourcemap: true,
 
 				globPatterns: ['**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
