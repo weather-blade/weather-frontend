@@ -38,11 +38,11 @@ export default defineConfig({
 			workbox: {
 				sourcemap: true,
 
-				globPatterns: ['**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
+				globPatterns: ['**/*.{html,css,js,ico,png,svg,webp,woff,woff2}'],
 			},
 
 			injectManifest: {
-				globPatterns: ['**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
+				globPatterns: ['**/*.{html,css,js,ico,png,svg,webp,woff,woff2}'],
 			},
 		}),
 	],
