@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { SvelteKitPWA } from '@vite-pwa/sveltekit';
+import { VitePWA } from 'vite-plugin-pwa';
 import { manifest } from './src/assets/manifest';
 
 export default defineConfig({
@@ -17,7 +17,7 @@ export default defineConfig({
 
 	plugins: [
 		sveltekit(),
-		SvelteKitPWA({
+		VitePWA({
 			// https://github.com/vite-pwa/sveltekit/blob/main/examples/sveltekit-ts/vite.config.ts
 
 			registerType: 'autoUpdate',
@@ -36,7 +36,6 @@ export default defineConfig({
 			includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
 
 			workbox: {
-				// doesn't work with SvelteKitPWA plugin. Works with VitePWA plugin though
 				sourcemap: true,
 
 				globPatterns: ['**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
