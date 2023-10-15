@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { VitePWA } from 'vite-plugin-pwa';
+import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 import { manifest } from './src/assets/manifest';
 
 export default defineConfig({
@@ -17,7 +17,7 @@ export default defineConfig({
 
 	plugins: [
 		sveltekit(),
-		VitePWA({
+		SvelteKitPWA({
 			// https://github.com/vite-pwa/sveltekit/blob/main/examples/sveltekit-ts/vite.config.ts
 
 			registerType: 'autoUpdate',
@@ -26,6 +26,7 @@ export default defineConfig({
 			srcDir: 'src/workers',
 			filename: 'sw.ts',
 
+			// enable logs
 			mode: 'development',
 			devOptions: {
 				enabled: true,
@@ -38,11 +39,11 @@ export default defineConfig({
 			workbox: {
 				sourcemap: true,
 
-				globPatterns: ['**/*.{html,css,js,ico,png,svg,webp,woff,woff2}'],
+				globPatterns: ['client/**/*.{html,css,js,ico,png,svg,webp,woff,woff2}'],
 			},
 
 			injectManifest: {
-				globPatterns: ['**/*.{html,css,js,ico,png,svg,webp,woff,woff2}'],
+				globPatterns: ['client/**/*.{html,css,js,ico,png,svg,webp,woff,woff2}'],
 			},
 		}),
 	],
