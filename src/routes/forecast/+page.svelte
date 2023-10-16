@@ -4,6 +4,7 @@
 	import ChartForecast from '$lib/chart/ChartForecast.svelte';
 	import ForecastTable from './ForecastTable.svelte';
 	import Footer from './Footer.svelte';
+	import NotificationsBtn from './NotificationsBtn.svelte';
 
 	let forecast: IForecast[] = [];
 	let sunriseSunset: ISunrise | undefined;
@@ -23,6 +24,8 @@
 </svelte:head>
 
 <section class="flex h-full flex-col gap-2">
+	<NotificationsBtn />
+
 	<ChartForecast {forecast} />
 
 	{#if forecast.length === 0}

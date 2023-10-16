@@ -8,7 +8,7 @@
 
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
 
-declare const self: ServiceWorkerGlobalScope;
+declare const self: ServiceWorkerGlobalScope & typeof globalThis;
 
 cleanupOutdatedCaches();
 precacheAndRoute(self.__WB_MANIFEST);
@@ -17,9 +17,44 @@ self.addEventListener('install', (e) => {
 	console.log('[SW] Installing new service worker');
 });
 
-// self.addEventListener("fetch", (e) => {
-//   console.log(`[SW] Fetching resource: ${e.request.url}`);
-// });
+self.addEventListener('push', (event) => {
+	if (!(self.Notification && self.Notification.permission === 'granted')) {
+		console.error('[SW] Notifications are disabled');
+		return;
+	}
+
+	let data: Record<string, string | undefined> = {};
+
+	try {
+		data = event.data?.json() ?? {};
+	} catch (error) {
+		console.error('[SW] Push message is not a valid JSON\n', error, '\n\n', event.data?.text());
+		return;
+	}
+
+	console.log('[SW] New push notification\n', data);
+
+	const title = data.title ?? '';
+	const body = data.body ?? '';
+	const icon = 'icons/icon-main.svg';
+	const url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+
+	self.registration.showNotification(title, {
+		body,
+		icon,
+		data: {
+			url,
+		},
+	});
+});
+
+self.addEventListener('notificationclick', (event) => {
+	event.notification.close();
+
+	const url = event.notification.data.url;
+
+	self.clients.openWindow(url);
+});
 
 self.addEventListener('activate', (e) => {
 	console.log('[SW] Activating new service worker');
