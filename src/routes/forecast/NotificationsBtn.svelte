@@ -1,5 +1,6 @@
 <script lang="ts">
 	import SvgIcon from '$lib/SvgIcon.svelte';
+	import { base } from '$app/paths';
 
 	async function notifyMe() {
 		if (!('Notification' in window)) {
@@ -18,7 +19,7 @@
 	function sendTestNotification() {
 		const title = 'Notifications enabled';
 		const body = 'Hello there!';
-		const icon = '/icons/icon-main.svg';
+		const icon = `${base}/icons/icon-main.svg`;
 		const url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
 
 		const notification = new Notification(title, {
