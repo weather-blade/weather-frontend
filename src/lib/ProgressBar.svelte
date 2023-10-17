@@ -21,6 +21,7 @@
 
 <div
 	role="progressbar"
+	aria-label="progress-{Math.round(($progress / max) * 100)}/100"
 	class="
 		h-full w-full overflow-hidden rounded-full
 		{bgClass === '' ? 'bg-gray-500' : bgClass}
