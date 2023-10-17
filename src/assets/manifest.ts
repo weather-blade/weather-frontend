@@ -4,6 +4,33 @@ export const manifest: Partial<ManifestOptions> = {
 	name: 'Meteostanice',
 	short_name: 'Meteostanice',
 	description: 'Webová aplikace pro sledování meteostanice',
+	screenshots: [
+		{
+			src: 'screenshots/narrow/dashboard.png',
+			sizes: '420x730',
+			form_factor: 'narrow',
+			type: 'image/png',
+		},
+		{
+			src: 'screenshots/narrow/forecast.png',
+			sizes: '420x730',
+			form_factor: 'narrow',
+			type: 'image/png',
+		},
+
+		{
+			src: 'screenshots/wide/dashboard.png',
+			sizes: '1560x1180',
+			form_factor: 'wide',
+			type: 'image/png',
+		},
+		{
+			src: 'screenshots/wide/forecast.png',
+			sizes: '1560x1180',
+			form_factor: 'wide',
+			type: 'image/png',
+		},
+	],
 	icons: [
 		{
 			src: 'images/android-chrome-192x192.png',
