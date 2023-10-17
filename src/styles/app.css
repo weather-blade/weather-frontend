@@ -34,5 +34,5 @@
 
 body {
 	/* so you don't get flashbanged during loading */
-	@apply bg-zinc-100;
+	@apply bg-zinc-900;
 }
