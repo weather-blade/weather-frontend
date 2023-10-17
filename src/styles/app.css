@@ -31,3 +31,8 @@
 		@apply hover:brightness-110 active:brightness-125;
 	}
 }
+
+body {
+	/* so you don't get flashbanged during loading */
+	@apply bg-zinc-100;
+}
