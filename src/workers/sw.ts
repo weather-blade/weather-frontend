@@ -60,4 +60,11 @@ self.addEventListener('activate', (e) => {
 	console.log('[SW] Activating new service worker');
 });
 
+self.addEventListener('message', (event) => {
+	// For when we call updateServiceWorker
+	if (event.data && event.data.type === 'SKIP_WAITING') {
+		self.skipWaiting();
+	}
+});
+
 export {};

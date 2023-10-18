@@ -20,7 +20,7 @@ export default defineConfig({
 		SvelteKitPWA({
 			// https://github.com/vite-pwa/sveltekit/blob/main/examples/sveltekit-ts/vite.config.ts
 
-			registerType: 'autoUpdate',
+			registerType: 'prompt',
 
 			strategies: 'injectManifest',
 			srcDir: 'src/workers',

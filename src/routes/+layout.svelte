@@ -1,30 +1,9 @@
 <script>
 	import '$styles/app.css';
 	import Header from './Header.svelte';
-	import { onMount } from 'svelte';
 	import { pwaInfo } from 'virtual:pwa-info';
 	import { Toaster } from 'svelte-french-toast';
-	import { useRegisterSW } from 'virtual:pwa-register/svelte';
-
-	onMount(async () => {
-		if (pwaInfo) {
-			useRegisterSW({
-				immediate: true,
-
-				onRegisteredSW(r) {
-					console.log('[SW] Registered:', r);
-				},
-
-				onRegisterError(error) {
-					console.log('[SW] Registration error:', error);
-				},
-
-				onOfflineReady() {
-					console.log('[SW] Offline mode ready');
-				},
-			});
-		}
-	});
+	import ReloadPWAPrompt from '$lib/ReloadPWAPrompt.svelte';
 
 	$: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
 </script>
@@ -41,6 +20,8 @@
 	<main class="flex-auto">
 		<slot />
 	</main>
+
+	<ReloadPWAPrompt />
 
 	<Toaster />
 </div>
