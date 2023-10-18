@@ -69,17 +69,22 @@
 </script>
 
 <section
-	class="fixed mx-14 my-5 flex flex-col items-center rounded border border-zinc-700 bg-zinc-800 p-2 opacity-50 hover:opacity-100"
+	class="fixed left-20 top-24 flex flex-col items-center rounded border border-zinc-700 bg-zinc-800 p-2 opacity-50 hover:opacity-100"
 >
 	<div class="flex flex-col items-stretch gap-2">
 		{#each visibleOptions as option}
 			<button
-				class="rounded border border-zinc-600 bg-zinc-700 p-1 hover:brightness-110 active:brightness-125"
+				class="rounded border border-zinc-600 bg-zinc-700 px-1 hover:brightness-110 active:brightness-125"
 				on:click={() => {
 					updateReadings(option.year, option.month + 1);
 				}}
 			>
-				{MONTH_NAMES[option.month]}
+				<div>
+					{MONTH_NAMES[option.month]}
+				</div>
+				<div class="text-xs">
+					({option.year})
+				</div>
 			</button>
 		{/each}
 	</div>
