@@ -35,7 +35,7 @@
 
 <button
 	on:click={notifyMe}
-	class="flex items-center gap-1 self-end rounded border border-zinc-700 bg-zinc-800 p-1"
+	class="flex items-center gap-1 self-end rounded border border-zinc-700 bg-zinc-800 p-1 hover:brightness-110 active:brightness-125"
 >
 	<span>Zapnout notifikace</span>
 
