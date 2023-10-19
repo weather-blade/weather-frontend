@@ -32,7 +32,6 @@
 
 			await createPushSubscription();
 
-			sendTestNotification();
 			toast.success('Notifikace byly zapnuty');
 		} catch (error) {
 			console.error('Failed to register push notifications', error);
