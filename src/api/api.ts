@@ -1,5 +1,5 @@
 const API_URL = 'https://weather-station-backend.fly.dev';
-// const API_URL = "localhost:8080";
+// const API_URL = 'http://localhost:8080';
 
 export class ReadingsAPI {
 	public static async fetchRange(
@@ -128,5 +128,53 @@ export class ForecastAPI {
 		console.log('Forecast: ', forecast);
 		console.log('Sunrise: ', sunriseSunset);
 		return { forecast, sunriseSunset };
+	}
+
+	/**
+	 *
+	 * @returns Public VAPID key from server or undefined if error occured
+	 */
+	public static async getVapidKey() {
+		try {
+			const url = `${API_URL}/api/forecast/push/vapidPublicKey`;
+
+			const res = await fetch(url);
+
+			if (!res.ok) {
+				throw new Error(`Network response was not OK: ${res.status} ${res.statusText}`);
+			}
+
+			const key = await res.text();
+
+			return key;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	/**
+	 * Sends the push subscription to server to be saved in db
+	 */
+	public static async saveSubscription(subscription: PushSubscription) {
+		try {
+			const url = `${API_URL}/api/forecast/push/subscribe`;
+
+			const res = await fetch(url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					subscription,
+				}),
+			});
+
+			if (!res.ok) {
+				throw new Error(`Network response was not OK: ${res.status} ${res.statusText}`);
+			}
+		} catch (error) {
+			console.error(error);
+			throw new Error();
+		}
 	}
 }

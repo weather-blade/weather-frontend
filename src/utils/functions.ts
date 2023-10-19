@@ -47,4 +47,16 @@ export class Utils {
 			dateTo.getMonth() - dateFrom.getMonth() + 12 * (dateTo.getFullYear() - dateFrom.getFullYear())
 		);
 	}
+
+	/**
+	 * Convert the URL safe base64 string to a Uint8Array
+	 * (taken from https://github.com/web-push-libs/web-push)
+	 * @param base64String base64 string
+	 */
+	public static urlBase64ToUint8Array(base64String: string): Uint8Array {
+		const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+		const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+		const rawData = window.atob(base64);
+		return Uint8Array.from(Array.from(rawData).map((char) => char.charCodeAt(0)));
+	}
 }
