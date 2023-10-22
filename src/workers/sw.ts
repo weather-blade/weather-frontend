@@ -34,10 +34,16 @@ self.addEventListener('push', (event) => {
 
 	console.log('[SW] New push notification\n', data);
 
+	if (data.body === undefined) {
+		return;
+	}
+
+	const fallbackIcon = 'icons/icon-main.svg';
+
 	const title = data.title ?? '';
-	const body = data.body ?? '';
-	const icon = 'icons/icon-main.svg';
-	const url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+	const body = data.body;
+	const icon = data.icon !== undefined ? `icons/weathericons/${data.icon}.svg` : fallbackIcon;
+	const url = 'https://bladesheng.github.io/weather-station-frontend-v2/forecast/';
 
 	self.registration.showNotification(title, {
 		body,
