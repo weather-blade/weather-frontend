@@ -4,6 +4,7 @@
 	import { Utils } from '$utils/functions';
 	import { ForecastAPI } from '$api/api';
 	import { toast } from 'svelte-french-toast';
+	import { toastOpts } from '$lib/toastOptions';
 
 	/**
 	 * Asks user for notifications consent and registers push notifications subscription
@@ -14,7 +15,7 @@
 			!('PushManager' in window) ||
 			!('serviceWorker' in navigator)
 		) {
-			toast.error('Váš prohlížeč nepodporuje notifikace');
+			toast.error('Váš prohlížeč nepodporuje notifikace', toastOpts.err);
 			return;
 		}
 
@@ -32,10 +33,10 @@
 
 			await createPushSubscription();
 
-			toast.success('Notifikace byly zapnuty');
+			toast.success('Notifikace byly zapnuty', toastOpts.ok);
 		} catch (error) {
 			console.error('Failed to register push notifications', error);
-			toast.error('Nepodařilo se zapnout notifikace');
+			toast.error('Nepodařilo se zapnout notifikace', toastOpts.err);
 		}
 	}
 
