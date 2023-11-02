@@ -55,7 +55,7 @@ export const manifest: Partial<ManifestOptions> = {
 			purpose: 'maskable',
 		},
 	],
-	start_url: '/weather-frontend',
+	start_url: '/',
 	scope: '/',
 	display: 'standalone',
 	theme_color: '#18181b',
