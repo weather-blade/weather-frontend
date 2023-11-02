@@ -1,5 +1,5 @@
 # weather-frontend
-Frontend web app used for displaying data collected by my weather station:
+Frontend web app used for displaying data from [backend API](https://github.com/weather-blade/weather-server)
 
 ## How to run this
 
