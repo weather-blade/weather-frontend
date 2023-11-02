@@ -47,7 +47,7 @@ export default defineConfig({
 			},
 
 			kit: {
-				trailingSlash: 'always',
+				// trailingSlash: 'always',
 			},
 		}),
 	],
