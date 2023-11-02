@@ -45,10 +45,6 @@ export default defineConfig({
 			injectManifest: {
 				globPatterns: ['client/**/*.{html,css,js,ico,png,svg,webp,woff,woff2}'],
 			},
-
-			kit: {
-				// trailingSlash: 'always',
-			},
 		}),
 	],
 
