@@ -55,7 +55,7 @@ export const manifest: Partial<ManifestOptions> = {
 			purpose: 'maskable',
 		},
 	],
-	start_url: '/weather-station-frontend-v2',
+	start_url: '/weather-frontend',
 	scope: '/',
 	display: 'standalone',
 	theme_color: '#18181b',

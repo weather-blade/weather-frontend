@@ -5,11 +5,7 @@
 
 	<span>|</span>
 
-	<a
-		class="text-blue-500"
-		target="_blank"
-		href="https://github.com/Bladesheng/weather-station-frontend-v2"
-	>
+	<a class="text-blue-500" target="_blank" href="https://github.com/weather-blade/weather-frontend">
 		Source
 	</a>
 </footer>

@@ -1,1 +1,1 @@
-# weather-station-frontend-v2
+# weather-frontend
