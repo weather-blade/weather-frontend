@@ -1,4 +1,5 @@
 # weather-frontend
+
 Frontend web app used for displaying data from [backend API](https://github.com/weather-blade/weather-server)
 
 Github action automatically builds and deploys the static files to github pages on every commit.

@@ -1,4 +1,4 @@
-const API_URL = 'https://weather-station-backend.fly.dev';
+const API_URL = 'https://weatherapi.bladesheng.com';
 // const API_URL = 'http://localhost:8080';
 
 export class ReadingsAPI {

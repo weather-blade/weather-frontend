@@ -29,7 +29,7 @@
 
 	// open new SSE connection if you are online and not listening yet
 	$: if (!listeningToSSE && isOnline) {
-		const SSE_URL = 'https://weather-station-backend.fly.dev/api/readings/events';
+		const SSE_URL = 'https://weatherapi.bladesheng.com/api/readings/events';
 		// const SSE_URL = 'http://localhost:8080/api/readings/events';
 
 		eventSource = new EventSource(SSE_URL);
