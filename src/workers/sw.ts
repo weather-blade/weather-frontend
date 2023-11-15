@@ -43,7 +43,7 @@ self.addEventListener('push', (event) => {
 	const title = data.title ?? '';
 	const body = data.body;
 	const icon = data.icon !== undefined ? `icons/weathericons/${data.icon}.svg` : fallbackIcon;
-	const url = 'https://weather.bladesheng.com/forecast/';
+	const url = 'https://weather.bladesheng.com/forecast';
 
 	self.registration.showNotification(title, {
 		body,
