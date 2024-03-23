@@ -36,3 +36,14 @@ body {
 	/* so you don't get flashbanged during loading */
 	@apply bg-zinc-900;
 }
+
+/*  https://github.com/sveltejs/vite-plugin-svelte/blob/main/docs/inspector.md */
+#svelte-inspector-host {
+	position: fixed;
+	z-index: 9999;
+
+	#svelte-inspector-toggle {
+		opacity: 0.5;
+		transform: scale(0.7);
+	}
+}

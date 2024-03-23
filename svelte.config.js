@@ -35,6 +35,15 @@ const config = {
 			register: false,
 		},
 	},
+
+	vitePlugin: {
+		// https://github.com/sveltejs/vite-plugin-svelte/blob/main/docs/inspector.md
+		inspector: {
+			showToggleButton: 'always',
+			toggleKeyCombo: 'meta-shift',
+			toggleButtonPos: 'bottom-right',
+		},
+	},
 };
 
 export default config;
