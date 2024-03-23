@@ -13,7 +13,7 @@ on:
 
 # Allow one concurrent deployment
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build the Docker image
         run: docker build --file Dockerfile --tag builder-image .
@@ -35,7 +35,7 @@ jobs:
         run: docker cp builder-container:/app/build .
 
       - name: Upload static files artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./build
           name: github-pages
@@ -60,6 +60,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
         with:
           artifact_name: github-pages
