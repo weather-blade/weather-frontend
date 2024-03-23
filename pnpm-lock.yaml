@@ -4,10 +4,15 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  chart.js@4.4.2:
+    hash: vuk557jm6ljxmllyzgcox3ie3q
+    path: patches/chart.js@4.4.2.patch
+
 dependencies:
   chart.js:
     specifier: ^4.4.2
-    version: 4.4.2
+    version: 4.4.2(patch_hash=vuk557jm6ljxmllyzgcox3ie3q)
   chartjs-adapter-date-fns:
     specifier: ^3.0.0
     version: 3.0.0(chart.js@4.4.2)(date-fns@3.6.0)
@@ -2473,12 +2478,13 @@ packages:
       supports-color: 7.2.0
     dev: true
 
-  /chart.js@4.4.2:
+  /chart.js@4.4.2(patch_hash=vuk557jm6ljxmllyzgcox3ie3q):
     resolution: {integrity: sha512-6GD7iKwFpP5kbSD4MeRRRlTnQvxfQREy36uEtm1hzHzcOqwWx0YEHuspuoNlslu+nciLIB7fjjsHkUv/FzFcOg==}
     engines: {pnpm: '>=8'}
     dependencies:
       '@kurkle/color': 0.3.2
     dev: false
+    patched: true
 
   /chartjs-adapter-date-fns@3.0.0(chart.js@4.4.2)(date-fns@3.6.0):
     resolution: {integrity: sha512-Rs3iEB3Q5pJ973J93OBTpnP7qoGwvq3nUnoMdtxO+9aoJof7UFcRbWcIDteXuYd1fgAvct/32T9qaLyLuZVwCg==}
@@ -2486,7 +2492,7 @@ packages:
       chart.js: '>=2.8.0'
       date-fns: '>=2.0.0'
     dependencies:
-      chart.js: 4.4.2
+      chart.js: 4.4.2(patch_hash=vuk557jm6ljxmllyzgcox3ie3q)
       date-fns: 3.6.0
     dev: false
 
@@ -2495,7 +2501,7 @@ packages:
     peerDependencies:
       chart.js: '>=3.2.0'
     dependencies:
-      chart.js: 4.4.2
+      chart.js: 4.4.2(patch_hash=vuk557jm6ljxmllyzgcox3ie3q)
       hammerjs: 2.0.8
     dev: false
 
