@@ -281,6 +281,9 @@
 		chartInstance.data.datasets[4].data = readings_pressure_BMP;
 
 		chartInstance.update();
+
+		// so we don't get stuck at an older date
+		chartInstance.resetZoom();
 	}
 
 	onMount(() => {
