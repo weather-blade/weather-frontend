@@ -3,6 +3,7 @@
 	import { ReadingsAPI } from '$api/api';
 	import { Utils } from '$utils/functions';
 	import SvgIcon from '$lib/SvgIcon.svelte';
+	import { slide } from 'svelte/transition';
 	import type { Writable } from 'svelte/store';
 
 	// currently displayed readings
@@ -30,72 +31,99 @@
 		return subMonths(new Date(), i);
 	});
 
-	// array of years+months that have readings to select from
-	const options = months.map((date) => {
-		const year = date.getFullYear();
-		const month = date.getMonth();
-
-		return {
-			year,
-			month,
+	const yearsGroups = months.reduce<{
+		[year: number]: {
+			months: Date[];
+			isOpen: boolean;
 		};
-	});
+	}>((acc, month) => {
+		const year = month.getFullYear();
 
-	// how many months are visible when options are collapsed
-	const COLLAPSED_OPTIONS_COUNT = 5;
-	$: visibleOptions = options.slice(0, COLLAPSED_OPTIONS_COUNT);
+		if (!acc[year]) {
+			acc[year] = {
+				months: [],
+				isOpen: false,
+			};
 
-	/**
-	 * Collapse / expand months
-	 */
-	function toggleOptions() {
-		if (visibleOptions.length > COLLAPSED_OPTIONS_COUNT) {
-			// show only few
-			visibleOptions = options.slice(0, COLLAPSED_OPTIONS_COUNT);
-		} else {
-			// show all
-			visibleOptions = options;
+			if (year === new Date().getFullYear()) {
+				acc[year].isOpen = true;
+			}
 		}
-	}
+
+		acc[year].months.push(month);
+
+		return acc;
+	}, {});
 
 	/**
 	 * Change readings to the corresponding year and month
 	 */
-	async function updateReadings(year: number, month: number) {
-		const res = await ReadingsAPI.fetchMonth(year, month);
+	async function updateReadings(month: Date) {
+		const res = await ReadingsAPI.fetchMonth(month.getFullYear(), month.getMonth() + 1);
 
 		$readings = res;
 	}
 </script>
 
-<section
-	class="fixed left-20 top-24 flex flex-col items-center rounded border border-zinc-700 bg-zinc-800 p-2 opacity-50 hover:opacity-100"
->
-	<div class="flex flex-col items-stretch gap-2">
-		{#each visibleOptions as option}
-			<button
-				class="rounded border border-zinc-600 bg-zinc-700 px-1 hover:brightness-110 active:brightness-125"
-				on:click={() => {
-					updateReadings(option.year, option.month + 1);
-				}}
-			>
-				<div>
-					{MONTH_NAMES[option.month]}
-				</div>
-				<div class="text-xs">
-					({option.year})
-				</div>
-			</button>
+<section class="flex min-h-48 flex-grow flex-col rounded border border-zinc-700 bg-zinc-800 p-2">
+	<div
+		class="scrollBar flex h-0 flex-auto items-stretch justify-between gap-2 overflow-y-scroll p-1 md:flex-col md:justify-start"
+	>
+		{#each Object.entries(yearsGroups).reverse() as [year, yearData]}
+			<div class="flex min-w-20 flex-col items-stretch">
+				<button
+					class="mb-1 flex items-center justify-between"
+					on:click={() => {
+						yearData.isOpen = !yearData.isOpen;
+					}}
+				>
+					<span>
+						{year}
+					</span>
+
+					<SvgIcon
+						name="expand_more"
+						class="
+							h-8 w-8 text-stone-400 transition-transform hover:brightness-110 active:brightness-125
+							{yearData.isOpen ? 'rotate-180' : ''}
+						"
+					/>
+				</button>
+
+				{#if yearData.isOpen}
+					<div transition:slide class="flex flex-col gap-2">
+						{#each yearData.months as month}
+							<button
+								class="rounded border border-zinc-600 bg-zinc-700 p-1 hover:brightness-110 active:brightness-125"
+								on:click={() => {
+									updateReadings(month);
+								}}
+							>
+								{MONTH_NAMES[month.getMonth()]}
+							</button>
+						{/each}
+					</div>
+				{/if}
+			</div>
 		{/each}
 	</div>
-
-	<button on:click={toggleOptions}>
-		<SvgIcon
-			name="delete"
-			class="
-				h-10 w-10 text-stone-400 transition-transform hover:brightness-110 active:brightness-125
-				{visibleOptions.length > COLLAPSED_OPTIONS_COUNT ? 'rotate-180' : ''}
-			"
-		/>
-	</button>
 </section>
+
+<style>
+	.scrollBar {
+		scrollbar-gutter: stable both-edges;
+	}
+
+	.scrollBar::-webkit-scrollbar {
+		width: 5px;
+	}
+
+	.scrollBar::-webkit-scrollbar-thumb {
+		background-color: rgba(128, 128, 128, 0.8);
+		border-radius: 20rem;
+	}
+
+	.scrollBar::-webkit-scrollbar-thumb:hover {
+		background-color: rgba(128, 128, 128, 1);
+	}
+</style>

@@ -10,7 +10,7 @@
 	<title>Úplná data</title>
 </svelte:head>
 
-<section class="flex h-full flex-col gap-2">
+<section class="flex h-full flex-col gap-2 md:flex-row">
 	<Controls {readings} />
 
 	<ChartHistory readings={$readings} />

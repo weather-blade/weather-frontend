@@ -309,6 +309,6 @@
 	});
 </script>
 
-<div class="h-full rounded border border-zinc-700 bg-zinc-800 p-1">
+<div class="h-full min-h-96 flex-grow rounded border border-zinc-700 bg-zinc-800 p-1">
 	<canvas bind:this={ctx} />
 </div>
