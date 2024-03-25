@@ -38,12 +38,7 @@ body {
 }
 
 /*  https://github.com/sveltejs/vite-plugin-svelte/blob/main/docs/inspector.md */
-#svelte-inspector-host {
-	position: fixed;
-	z-index: 9999;
-
-	#svelte-inspector-toggle {
-		opacity: 0.5;
-		transform: scale(0.7);
-	}
+#svelte-inspector-host > #svelte-inspector-toggle {
+	transform: scale(0.7);
+	opacity: 0.5;
 }
