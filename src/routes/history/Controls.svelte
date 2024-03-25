@@ -72,7 +72,7 @@
 		{#each Object.entries(yearsGroups).reverse() as [year, yearData]}
 			<div class="flex min-w-20 flex-col items-stretch">
 				<button
-					class="mb-1 flex items-center justify-between"
+					class="mb-1 flex items-center justify-between hover:brightness-110 active:brightness-125"
 					on:click={() => {
 						yearData.isOpen = !yearData.isOpen;
 					}}
@@ -84,7 +84,7 @@
 					<SvgIcon
 						name="expand_more"
 						class="
-							h-8 w-8 text-stone-400 transition-transform hover:brightness-110 active:brightness-125
+							h-8 w-8 text-stone-400 transition-transform
 							{yearData.isOpen ? 'rotate-180' : ''}
 						"
 					/>
