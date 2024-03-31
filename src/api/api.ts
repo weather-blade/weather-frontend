@@ -1,14 +1,14 @@
-const API_URL = 'https://weatherapi.bladesheng.com';
-// const API_URL = 'http://localhost:8080';
-
 export class ReadingsAPI {
+	public static apiURL = 'https://weatherapi.bladesheng.com';
+	// public static apiURL = 'http://localhost:8080';
+
 	public static async fetchRange(
 		// from 24 hours ago (miliseconds)
 		start = new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
 		// up until now
 		end = new Date()
 	) {
-		const url = `${API_URL}/api/readings/range?start=${start.toISOString()}&end=${end.toISOString()}`;
+		const url = `${ReadingsAPI.apiURL}/api/readings/range?start=${start.toISOString()}&end=${end.toISOString()}`;
 
 		const readings = this.fetchReadings(url);
 
@@ -16,7 +16,7 @@ export class ReadingsAPI {
 	}
 
 	public static async fetchLast24h() {
-		const url = `${API_URL}/api/readings/24h`;
+		const url = `${ReadingsAPI.apiURL}/api/readings/24h`;
 
 		const readings = this.fetchReadings(url);
 
@@ -24,7 +24,7 @@ export class ReadingsAPI {
 	}
 
 	public static async fetchMonth(year: number, month: number) {
-		const url = `${API_URL}/api/readings/month/decimated?year=${year}&month=${month}`;
+		const url = `${ReadingsAPI.apiURL}/api/readings/month/decimated?year=${year}&month=${month}`;
 
 		const readings = this.fetchReadings(url);
 
@@ -76,7 +76,7 @@ export class ReadingsAPI {
 
 export class ForecastAPI {
 	public static async fetchForecast() {
-		const url = `${API_URL}/api/forecast`;
+		const url = `${ReadingsAPI.apiURL}/api/forecast`;
 
 		let dataJson: {
 			forecast: IForecast[];
@@ -136,7 +136,7 @@ export class ForecastAPI {
 	 */
 	public static async getVapidKey() {
 		try {
-			const url = `${API_URL}/api/forecast/push/vapidPublicKey`;
+			const url = `${ReadingsAPI.apiURL}/api/forecast/push/vapidPublicKey`;
 
 			const res = await fetch(url);
 
@@ -157,7 +157,7 @@ export class ForecastAPI {
 	 */
 	public static async saveSubscription(subscription: PushSubscription) {
 		try {
-			const url = `${API_URL}/api/forecast/push/subscribe`;
+			const url = `${ReadingsAPI.apiURL}/api/forecast/push/subscribe`;
 
 			const res = await fetch(url, {
 				method: 'POST',
