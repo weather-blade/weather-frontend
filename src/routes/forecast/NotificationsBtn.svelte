@@ -20,12 +20,12 @@
 		}
 
 		try {
+			let permission = Notification.permission;
 			// user has not decided yet - show them prompt
-			if (Notification.permission === 'default') {
-				const permission = await Notification.requestPermission();
+			if (permission === 'default') {
+				permission = await Notification.requestPermission();
 			}
 
-			const permission = Notification.permission;
 			// user denied permission or just closed the prompt
 			if (permission === 'denied' || permission === 'default') {
 				return;
@@ -44,31 +44,26 @@
 	 * Creates push subscription
 	 */
 	async function createPushSubscription() {
-		try {
-			const SWRegistration = await navigator.serviceWorker.ready;
+		const SWRegistration = await navigator.serviceWorker.ready;
 
-			const pushSubscriptionExists = await SWRegistration.pushManager.getSubscription();
-			if (pushSubscriptionExists) {
-				return;
-			}
-
-			const publicKey = await ForecastAPI.getVapidKey();
-			if (publicKey === undefined) {
-				throw new Error('Public VAPID key is required for push subscription');
-			}
-
-			const options: PushSubscriptionOptionsInit = {
-				userVisibleOnly: true,
-				applicationServerKey: Utils.urlBase64ToUint8Array(publicKey),
-			};
-
-			const pushSubscription = await SWRegistration.pushManager.subscribe(options);
-
-			await ForecastAPI.saveSubscription(pushSubscription);
-		} catch (error) {
-			console.error('Failed to create push subscription', error);
-			throw new Error();
+		const pushSubscriptionExists = await SWRegistration.pushManager.getSubscription();
+		if (pushSubscriptionExists) {
+			return;
 		}
+
+		const publicKey = await ForecastAPI.getVapidKey();
+		if (publicKey === undefined) {
+			throw new Error('Public VAPID key is required for push subscription');
+		}
+
+		const options: PushSubscriptionOptionsInit = {
+			userVisibleOnly: true,
+			applicationServerKey: Utils.urlBase64ToUint8Array(publicKey),
+		};
+
+		const pushSubscription = await SWRegistration.pushManager.subscribe(options);
+
+		await ForecastAPI.saveSubscription(pushSubscription);
 	}
 
 	/**
