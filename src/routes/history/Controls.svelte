@@ -24,7 +24,7 @@
 		'Prosinec',
 	] as const;
 
-	export const FIRST_READING_EVER = new Date('2022-07-02T20:00:00.000Z');
+	export const FIRST_READING_EVER = new Date('2023-07-02T20:00:00.000Z');
 	const numberOfMonths = Utils.monthDiff(FIRST_READING_EVER, new Date()) + 1;
 	// array of months between now and first reading ever
 	const months = [...Array(numberOfMonths)].map((_, i) => {
