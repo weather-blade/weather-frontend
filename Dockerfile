@@ -1,6 +1,6 @@
-FROM node:20.11.1-bullseye-slim as builder
+FROM node:22.10.0-bullseye-slim as builder
 RUN apt-get update && apt-get upgrade -y
-RUN npm -g install pnpm@8.15.5
+RUN npm -g install pnpm@9.12.2
 
 WORKDIR /app
 
@@ -18,9 +18,9 @@ COPY . .
 RUN pnpm run build
 
 
-FROM node:20.11.1-bullseye-slim as deployment
+FROM node:22.10.0-bullseye-slim as deployment
 RUN apt-get update && apt-get upgrade -y
-RUN npm -g install pnpm@8.15.5
+RUN npm -g install pnpm@9.12.2
 
 # keep only the needed files
 COPY --from=builder /app/build /app/build

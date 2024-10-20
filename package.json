@@ -12,8 +12,7 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": "20.11.1",
-		"pnpm": "8.15.5"
+		"node": "22.10.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.1",
