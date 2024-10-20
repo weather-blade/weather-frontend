@@ -19,7 +19,7 @@
 		maxTemperature: number;
 	} {
 		const avgTemperatures = readings.map((reading) => {
-			return (reading.temperature_DHT + reading.temperature_BMP) / 2;
+			return (reading.temperature_dht + reading.temperature_bmp) / 2;
 		});
 		minTemperature = Math.min(...avgTemperatures);
 		maxTemperature = Math.max(...avgTemperatures);
@@ -31,7 +31,7 @@
 	 * @returns object with padded values (hh:mm:ss dd.mm.yyyy) of the last reading
 	 */
 	function getLastReadingDate(readings: IReading[]) {
-		const lastDate = readings[0].createdAt;
+		const lastDate = readings[0].created_at;
 		return Utils.padDate(lastDate);
 	}
 
@@ -41,7 +41,7 @@
 	function getNextReadingDate(readings: IReading[]) {
 		const avgDelay = getAvgDelay(readings);
 
-		return new Date(readings[0].createdAt.getTime() + avgDelay);
+		return new Date(readings[0].created_at.getTime() + avgDelay);
 	}
 
 	/**
@@ -50,7 +50,7 @@
 	function getAvgDelay(readings: IReading[]) {
 		const delays: number[] = [];
 		for (let i = 0; i < readings.length - 1; i++) {
-			const delay = readings[i].createdAt.getTime() - readings[i + 1].createdAt.getTime();
+			const delay = readings[i].created_at.getTime() - readings[i + 1].created_at.getTime();
 			delays.push(delay);
 		}
 
@@ -60,11 +60,11 @@
 
 <section class="flex flex-wrap gap-2 whitespace-nowrap">
 	<Widget title="Aktuální teplota">
-		{Utils.round((readings[0].temperature_DHT + readings[0].temperature_BMP) / 2, 1)} ˚C
+		{Utils.round((readings[0].temperature_dht + readings[0].temperature_bmp) / 2, 1)} ˚C
 	</Widget>
 
 	<Widget title="Aktuální vlhkost">
-		{Math.round(readings[0].humidity_DHT)} %
+		{Math.round(readings[0].humidity_dht)} %
 	</Widget>
 
 	<Widget title="Poslední aktualizace">

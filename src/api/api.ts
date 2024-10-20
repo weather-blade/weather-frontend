@@ -69,7 +69,7 @@ export class ReadingsAPI {
 	 */
 	private static dateStringsToObjects(readings: IReading[]) {
 		for (const reading of readings) {
-			reading.createdAt = new Date(reading.createdAt);
+			reading.created_at = new Date(reading.created_at);
 		}
 	}
 }

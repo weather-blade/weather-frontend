@@ -25,34 +25,34 @@
 
 	$: readings_temperature_avg = readings.map((reading) => {
 		return {
-			x: reading.createdAt.getTime(),
+			x: reading.created_at.getTime(),
 			// average value of the 2 sensors
-			y: (reading.temperature_BMP + reading.temperature_DHT) / 2,
+			y: (reading.temperature_bmp + reading.temperature_dht) / 2,
 		};
 	});
 
-	$: readings_temperature_BMP = readings.map((reading) => {
+	$: readings_temperature_bmp = readings.map((reading) => {
 		return {
-			x: reading.createdAt.getTime(),
-			y: reading.temperature_BMP,
+			x: reading.created_at.getTime(),
+			y: reading.temperature_bmp,
 		};
 	});
-	$: readings_temperature_DHT = readings.map((reading) => {
+	$: readings_temperature_dht = readings.map((reading) => {
 		return {
-			x: reading.createdAt.getTime(),
-			y: reading.temperature_DHT,
+			x: reading.created_at.getTime(),
+			y: reading.temperature_dht,
 		};
 	});
-	$: readings_humidity_DHT = readings.map((reading) => {
+	$: readings_humidity_dht = readings.map((reading) => {
 		return {
-			x: reading.createdAt.getTime(),
-			y: reading.humidity_DHT,
+			x: reading.created_at.getTime(),
+			y: reading.humidity_dht,
 		};
 	});
-	$: readings_pressure_BMP = readings.map((reading) => {
+	$: readings_pressure_bmp = readings.map((reading) => {
 		return {
-			x: reading.createdAt.getTime(),
-			y: reading.pressure_BMP,
+			x: reading.created_at.getTime(),
+			y: reading.pressure_bmp,
 		};
 	});
 
@@ -214,7 +214,7 @@
 			},
 			{
 				label: 'Teplota BMP',
-				data: readings_temperature_BMP,
+				data: readings_temperature_bmp,
 				yAxisID: 'y1',
 				hidden: true,
 
@@ -228,7 +228,7 @@
 			},
 			{
 				label: 'Teplota DHT',
-				data: readings_temperature_DHT,
+				data: readings_temperature_dht,
 				yAxisID: 'y1',
 				hidden: true,
 
@@ -242,7 +242,7 @@
 			},
 			{
 				label: 'Vlhkost',
-				data: readings_humidity_DHT,
+				data: readings_humidity_dht,
 				yAxisID: 'y2',
 
 				backgroundColor: chartColors.lineBlue,
@@ -255,7 +255,7 @@
 			},
 			{
 				label: 'Tlak',
-				data: readings_pressure_BMP,
+				data: readings_pressure_bmp,
 				yAxisID: 'y3',
 				hidden: true,
 
@@ -275,10 +275,10 @@
 
 	$: if (chartInstance) {
 		chartInstance.data.datasets[0].data = readings_temperature_avg;
-		chartInstance.data.datasets[1].data = readings_temperature_BMP;
-		chartInstance.data.datasets[2].data = readings_temperature_DHT;
-		chartInstance.data.datasets[3].data = readings_humidity_DHT;
-		chartInstance.data.datasets[4].data = readings_pressure_BMP;
+		chartInstance.data.datasets[1].data = readings_temperature_bmp;
+		chartInstance.data.datasets[2].data = readings_temperature_dht;
+		chartInstance.data.datasets[3].data = readings_humidity_dht;
+		chartInstance.data.datasets[4].data = readings_pressure_bmp;
 
 		chartInstance.update();
 

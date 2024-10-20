@@ -34,7 +34,7 @@
 		// update current readings with newly received reading
 		eventSource.addEventListener('message', (event) => {
 			const newReading: IReading = JSON.parse(event.data);
-			newReading.createdAt = new Date(newReading.createdAt); // string to date object
+			newReading.created_at = new Date(newReading.created_at); // string to date object
 			console.log('New reading: ', newReading);
 
 			// remove last reading to only keep readings from last 24 hours

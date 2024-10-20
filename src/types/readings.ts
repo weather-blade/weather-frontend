@@ -1,9 +1,9 @@
 export type Reading = {
 	id: number;
-	createdAt: Date;
+	created_at: Date;
 
-	temperature_BMP: number;
-	temperature_DHT: number;
-	pressure_BMP: number;
-	humidity_DHT: number;
+	temperature_bmp: number;
+	temperature_dht: number;
+	pressure_bmp: number;
+	humidity_dht: number;
 };

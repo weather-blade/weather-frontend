@@ -22,10 +22,10 @@
 
 	export let readings: IReading[];
 
-	$: readings_pressure_BMP = readings.map((reading) => {
+	$: readings_pressure_bmp = readings.map((reading) => {
 		return {
-			x: reading.createdAt.getTime(),
-			y: reading.pressure_BMP / 100, // unit conversion from Pa to hPa
+			x: reading.created_at.getTime(),
+			y: reading.pressure_bmp / 100, // unit conversion from Pa to hPa
 		};
 	});
 
@@ -109,7 +109,7 @@
 		datasets: [
 			{
 				label: 'Tlak',
-				data: readings_pressure_BMP,
+				data: readings_pressure_bmp,
 				yAxisID: 'y1',
 
 				backgroundColor: chartColors.linePurple,
@@ -127,7 +127,7 @@
 	let chartInstance: Chart<'line'>;
 
 	$: if (chartInstance) {
-		chartInstance.data.datasets[0].data = readings_pressure_BMP;
+		chartInstance.data.datasets[0].data = readings_pressure_bmp;
 		chartInstance.update();
 	}
 
